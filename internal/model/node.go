@@ -1,22 +1,14 @@
 package model
 
 type Node[T any] struct {
-	Label    Label[T]
+	Value    T
 	Parent   *Node[T]
 	Children []*Node[T]
 }
 
-func NewNodeFromLabel[T any](label Label[T]) *Node[T] {
+func NewNode[T any](value T) *Node[T] {
 	return &Node[T]{
-		Label:    label,
-		Parent:   nil,
-		Children: nil,
-	}
-}
-
-func NewNodeFromValue[T any](value T) *Node[T] {
-	return &Node[T]{
-		Label:    *NewLabel(value),
+		Value:    value,
 		Parent:   nil,
 		Children: nil,
 	}

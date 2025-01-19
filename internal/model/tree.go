@@ -9,8 +9,8 @@ type Tree[T any] struct {
 	Root *Node[T]
 }
 
-func NewTree[T any](rootLabel *Label[T]) *Tree[T] {
-	root := NewNodeFromLabel(*rootLabel)
+func NewTree[T any](rootValue T) *Tree[T] {
+	root := NewNode(rootValue)
 	return &Tree[T]{Root: root}
 }
 
@@ -37,7 +37,7 @@ func (t *Tree[T]) String() string {
 			}
 		}
 
-		sb.WriteString(fmt.Sprintf("%v\n", node.Label.Value))
+		sb.WriteString(fmt.Sprintf("%v\n", node.Value))
 
 		for i, child := range node.Children {
 			printTree(child, prefix, false, i == len(node.Children)-1)
