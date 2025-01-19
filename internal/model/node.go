@@ -6,9 +6,17 @@ type Node[T any] struct {
 	Children []*Node[T]
 }
 
-func NewNode[T any](label Label[T]) *Node[T] {
+func NewNodeFromLabel[T any](label Label[T]) *Node[T] {
 	return &Node[T]{
 		Label:    label,
+		Parent:   nil,
+		Children: nil,
+	}
+}
+
+func NewNodeFromValue[T any](value T) *Node[T] {
+	return &Node[T]{
+		Label:    *NewLabel(value),
 		Parent:   nil,
 		Children: nil,
 	}
