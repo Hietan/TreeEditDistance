@@ -5,13 +5,34 @@ import (
 	"github.com/Hietan/TreeEditDistance/internal/model"
 )
 
-func CalcEditDistance[T any](t1, t2 *model.Tree[T]) int {
-	t1Size := t1.Size()
-	t2Size := t2.Size()
+func addSubtreeToArray[T any](arr []*model.Node[T], n *model.Node[T]) []*model.Node[T] {
+	arr = append(arr, n)
+	if n.Children != nil {
+		for _, child := range n.Children {
+			arr = addSubtreeToArray(arr, child)
+		}
+	}
+	return arr
+}
 
-	for i := 1; i <= t1Size; i++ {
-		for j := 1; j <= t2Size; j++ {
+func makeNodeArray[T any](t *model.Tree[T]) []*model.Node[T] {
+	return addSubtreeToArray([]*model.Node[T]{}, t.GetRoot())
+}
+
+func CalcEditDistance[T any](t1, t2 *model.Tree[T]) int {
+	nodeArrayT1 := makeNodeArray(t1)
+	nodeArrayT2 := makeNodeArray(t2)
+
+	fmt.Println(len(nodeArrayT1), len(nodeArrayT2))
+
+	sizeT1 := t1.Size()
+	sizeT2 := t2.Size()
+
+	for i := 1; i <= sizeT1; i++ {
+		for j := 1; j <= sizeT2; j++ {
 
 		}
 	}
+
+	return 0
 }
