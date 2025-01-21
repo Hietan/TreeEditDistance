@@ -21,7 +21,7 @@ func (t *Tree[T]) String() string {
 
 	var sb strings.Builder
 	var printTree func(node *Node[T], prefix string, isRoot bool, isLast bool)
-	printTree = func(node *Node[T], prefix sftring, isRoot bool, isLast bool) {
+	printTree = func(node *Node[T], prefix string, isRoot bool, isLast bool) {
 		if node == nil {
 			return
 		}
