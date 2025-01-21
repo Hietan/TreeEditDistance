@@ -12,8 +12,8 @@ func main() {
 	c1 := model.NewNode("child1")
 	c2 := model.NewNode("child2")
 
-	tree1.GetRoot.AddChild(c1)
-	tree1.GetRoot.AddChild(c2)
+	tree1.GetRoot().AddChild(c1)
+	tree1.GetRoot().AddChild(c2)
 
 	c11 := model.NewNode("child1.1")
 	c12 := model.NewNode("child1.2")
@@ -30,8 +30,8 @@ func main() {
 	d1 := model.NewNode("child1")
 	d2 := model.NewNode("child2")
 
-	tree2.GetRoot.AddChild(d1)
-	tree2.GetRoot.AddChild(d2)
+	tree2.GetRoot().AddChild(d1)
+	tree2.GetRoot().AddChild(d2)
 
 	d11 := model.NewNode("child1.1")
 	d12 := model.NewNode("child1.2")
