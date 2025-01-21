@@ -6,22 +6,22 @@ import (
 )
 
 type Tree[T any] struct {
-	Root *Node[T]
+	root *Node[T]
 }
 
 func NewTree[T any](rootValue T) *Tree[T] {
 	root := NewNode(rootValue)
-	return &Tree[T]{Root: root}
+	return &Tree[T]{root: root}
 }
 
 func (t *Tree[T]) String() string {
-	if t.Root == nil {
+	if t.root == nil {
 		return "<empty tree>"
 	}
 
 	var sb strings.Builder
 	var printTree func(node *Node[T], prefix string, isRoot bool, isLast bool)
-	printTree = func(node *Node[T], prefix string, isRoot bool, isLast bool) {
+	printTree = func(node *Node[T], prefix sftring, isRoot bool, isLast bool) {
 		if node == nil {
 			return
 		}
@@ -44,8 +44,12 @@ func (t *Tree[T]) String() string {
 		}
 	}
 
-	printTree(t.Root, "", true, true)
+	printTree(t.root, "", true, true)
 	return sb.String()
+}
+
+func (t *Tree[T]) GetRoot() *Node[T] {
+	return t.root
 }
 
 func subtreeSize[T any](n *Node[T]) int {
@@ -60,5 +64,5 @@ func subtreeSize[T any](n *Node[T]) int {
 }
 
 func (t *Tree[T]) Size() int {
-	return subtreeSize(t.Root)
+	return subtreeSize(t.root)
 }
