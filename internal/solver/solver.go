@@ -7,8 +7,9 @@ import (
 
 func addSubtreeToArray[T any](arr []*model.Node[T], n *model.Node[T]) []*model.Node[T] {
 	arr = append(arr, n)
-	if n.Children != nil {
-		for _, child := range n.Children {
+	children := n.GetChildren()
+	if children != nil {
+		for _, child := range children {
 			arr = addSubtreeToArray(arr, child)
 		}
 	}

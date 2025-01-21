@@ -37,10 +37,10 @@ func (t *Tree[T]) String() string {
 			}
 		}
 
-		sb.WriteString(fmt.Sprintf("%v\n", node.Value))
+		sb.WriteString(fmt.Sprintf("%v\n", node.GetValue()))
 
-		for i, child := range node.Children {
-			printTree(child, prefix, false, i == len(node.Children)-1)
+		for i, child := range node.GetChildren() {
+			printTree(child, prefix, false, i == len(node.GetChildren())-1)
 		}
 	}
 
@@ -54,10 +54,10 @@ func (t *Tree[T]) GetRoot() *Node[T] {
 
 func subtreeSize[T any](n *Node[T]) int {
 	size := 1
-	if n.Children == nil {
+	if n.GetChildren() == nil {
 		return 1
 	}
-	for _, child := range n.Children {
+	for _, child := range n.GetChildren() {
 		size += subtreeSize(child)
 	}
 	return size
