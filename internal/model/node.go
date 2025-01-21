@@ -3,6 +3,7 @@ package model
 import "fmt"
 
 type Node[T any] struct {
+	id       *int
 	Value    T
 	Parent   *Node[T]
 	Children []*Node[T]
@@ -10,10 +11,22 @@ type Node[T any] struct {
 
 func NewNode[T any](value T) *Node[T] {
 	return &Node[T]{
+		id:       nil,
 		Value:    value,
 		Parent:   nil,
 		Children: nil,
 	}
+}
+
+func (n *Node[T]) GetId() int {
+	return *n.id
+}
+
+func (n *Node[T]) SetId(id int) {
+	if id <= 0 {
+		panic("Node's ID must be positive")
+	}
+	n.id = &id
 }
 
 func (n *Node[T]) String() string {
