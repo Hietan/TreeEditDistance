@@ -47,3 +47,18 @@ func (t *Tree[T]) String() string {
 	printTree(t.Root, "", true, true)
 	return sb.String()
 }
+
+func subtreeSize[T any](n *Node[T]) int {
+	size := 1
+	if n.Children == nil {
+		return 1
+	}
+	for _, child := range n.Children {
+		size += subtreeSize(child)
+	}
+	return size
+}
+
+func (t *Tree[T]) Size() int {
+	return subtreeSize(t.Root)
+}
