@@ -28,3 +28,12 @@ func (n *Node[T]) RemoveChild(child *Node[T]) {
 		}
 	}
 }
+
+func ParentsIncludeMyself[T any](n *Node[T]) []*Node[T] {
+	var parents []*Node[T]
+	parents = append(parents, n)
+	for p := n.Parent; p != nil; p = p.Parent {
+		parents = append(parents, p)
+	}
+	return parents
+}
