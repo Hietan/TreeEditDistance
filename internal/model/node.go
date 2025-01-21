@@ -1,5 +1,7 @@
 package model
 
+import "fmt"
+
 type Node[T any] struct {
 	Value    T
 	Parent   *Node[T]
@@ -12,6 +14,10 @@ func NewNode[T any](value T) *Node[T] {
 		Parent:   nil,
 		Children: nil,
 	}
+}
+
+func (n *Node[T]) String() string {
+	return fmt.Sprintf("%v", n.Value)
 }
 
 func (n *Node[T]) AddChild(child *Node[T]) {
