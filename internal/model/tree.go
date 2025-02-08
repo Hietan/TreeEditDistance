@@ -14,6 +14,10 @@ func NewTree[T any](rootValue T) *Tree[T] {
 	return &Tree[T]{root: root}
 }
 
+func NewTreeFromNode[T any](node *Node[T]) *Tree[T] {
+	return &Tree[T]{root: node}
+}
+
 func (t *Tree[T]) String() string {
 	if t.root == nil {
 		return "<empty tree>"
