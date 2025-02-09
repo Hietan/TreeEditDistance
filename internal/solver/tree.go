@@ -4,6 +4,8 @@ import (
 	"github.com/Hietan/TreeEditDistance/internal/model"
 )
 
+const EmptyIndex = -1
+
 type Tree[T any] struct {
 	nodes  []*Node[T]
 	length int
@@ -34,10 +36,27 @@ func traverse[T any](nodes *[]*Node[T], now *model.Node[T], index int, parent in
 
 func NewTree[T any](t *model.Tree[T]) *Tree[T] {
 	nodes := []*Node[T]{}
-	length := traverse(&nodes, t.GetRoot(), 0, -1)
+	length := traverse(&nodes, t.GetRoot(), 0, EmptyIndex)
 
 	return &Tree[T]{
 		nodes:  nodes,
 		length: length,
 	}
+}
+
+func Cost(beforeInd int, afterInd int) int {
+	return 1
+}
+
+func (t *Tree[T]) GetParents(targetIndex int) *[]int {
+	parents := []int{}
+	now := targetIndex
+	for {
+		parents = append(parents, now)
+		now = t.GetNodes()[now].GetParent()
+		if now == EmptyIndex {
+			break
+		}
+	}
+	return &parents
 }
