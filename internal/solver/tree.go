@@ -44,25 +44,41 @@ func NewTree[T any](t *model.Tree[T]) *Tree[T] {
 	}
 }
 
-func Cost(beforeInd int, afterInd int) int {
-	return 1
+func Cost[T comparable](indBefore int, indAfter int, treeBefore Tree[T], treeAfter Tree[T]) int {
+
+	if indBefore == EmptyIndex && indAfter == EmptyIndex {
+		return 0
+	} else if indBefore == EmptyIndex || indAfter == EmptyIndex {
+		return 1
+	}
+
+	if treeBefore.GetNodes()[indBefore].GetValue() == treeAfter.GetNodes()[indAfter].GetValue() {
+		return 0
+	} else {
+		return 1
+	}
 }
 
 func (t *Tree[T]) GetPathToRoot(targetIndex int) *[]int {
 	path := []int{}
 	now := targetIndex
 	for {
-		path = append(path, now)
 		now = t.GetNodes()[now].GetParent()
 		if now == EmptyIndex {
 			break
 		}
+		path = append(path, now)
 	}
 	return &path
 }
 
+func (t *Tree[T]) GetPathToRootIncludeMyself(targetIndex int) []int {
+	path := *t.GetPathToRoot(targetIndex)
+	return append([]int{targetIndex}[:], path[:]...)
+}
+
 func (t *Tree[T]) GetChildOnPath(parent int, descendant int) int {
-	path := *t.GetPathToRoot(descendant)
+	path := t.GetPathToRootIncludeMyself(descendant)
 
 	for i := len(path) - 1; i > 0; i-- {
 		if path[i] == parent {
