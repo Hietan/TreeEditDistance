@@ -15,7 +15,7 @@ func CalcEditDistance[T any](t1, t2 *model.Tree[T]) int {
 	//	fmt.Println(node.GetValue(), node.GetParent(), node.GetChildren())
 	//}
 
-	fmt.Println(tree1.GetParents(4))
+	fmt.Println(tree1.GetChildOnPath(1, 4))
 
 	return 0
 }

@@ -48,15 +48,27 @@ func Cost(beforeInd int, afterInd int) int {
 	return 1
 }
 
-func (t *Tree[T]) GetParents(targetIndex int) *[]int {
-	parents := []int{}
+func (t *Tree[T]) GetPathToRoot(targetIndex int) *[]int {
+	path := []int{}
 	now := targetIndex
 	for {
-		parents = append(parents, now)
+		path = append(path, now)
 		now = t.GetNodes()[now].GetParent()
 		if now == EmptyIndex {
 			break
 		}
 	}
-	return &parents
+	return &path
+}
+
+func (t *Tree[T]) GetChildOnPath(parent int, descendant int) int {
+	path := *t.GetPathToRoot(descendant)
+
+	for i := len(path) - 1; i > 0; i-- {
+		if path[i] == parent {
+			return path[i-1]
+		}
+	}
+
+	return -1
 }
