@@ -1,6 +1,8 @@
 package solver
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Node[T any] struct {
 	value    T
