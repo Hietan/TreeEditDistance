@@ -5,6 +5,10 @@ import (
 	"github.com/Hietan/TreeEditDistance/internal/model"
 )
 
+func cost(beforeInd int, afterInd int) int {
+	return 1
+}
+
 func CalcEditDistance[T any](t1, t2 *model.Tree[T]) int {
 	tree1 := NewTree(t1)
 	tree2 := NewTree(t2)
