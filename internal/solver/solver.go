@@ -5,6 +5,8 @@ import (
 	"github.com/Hietan/TreeEditDistance/internal/model"
 )
 
+const EmptyIndex = -1
+
 func cost(beforeInd int, afterInd int) int {
 	return 1
 }
