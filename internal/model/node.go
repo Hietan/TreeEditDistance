@@ -3,7 +3,6 @@ package model
 import "fmt"
 
 type Node[T any] struct {
-	id       *int
 	value    T
 	parent   *Node[T]
 	children []*Node[T]
@@ -11,7 +10,6 @@ type Node[T any] struct {
 
 func NewNode[T any](value T) *Node[T] {
 	return &Node[T]{
-		id:       nil,
 		value:    value,
 		parent:   nil,
 		children: nil,
@@ -20,17 +18,6 @@ func NewNode[T any](value T) *Node[T] {
 
 func (n *Node[T]) String() string {
 	return fmt.Sprintf("%v", n.value)
-}
-
-func (n *Node[T]) GetId() int {
-	return *n.id
-}
-
-func (n *Node[T]) SetId(id int) {
-	if id <= 0 {
-		panic("Node's ID must be positive")
-	}
-	n.id = &id
 }
 
 func (n *Node[T]) GetValue() T {
