@@ -1,14 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"github.com/Hietan/TreeEditDistance/internal/parser"
 	"github.com/Hietan/TreeEditDistance/internal/solver"
 )
 
 func main() {
-	tree := parser.LoadTreeFromFile[string]("./tree1.json")
-	fmt.Println(tree)
+	tree1 := parser.LoadTreeFromFile[string]("./tree1.json")
+	tree2 := parser.LoadTreeFromFile[string]("./tree2.json")
 
-	solver.CalcEditDistance(tree, tree)
+	solver.CalcEditDistance(tree1, tree2)
 }

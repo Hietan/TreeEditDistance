@@ -1,3 +1,3 @@
 module github.com/Hietan/TreeEditDistance
 
-go 1.18
+go 1.21
